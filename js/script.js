@@ -1,4 +1,5 @@
 import { buscarDados } from "./script2.js"
+import { gerarLinha } from "./script3.js"
 
 let url = "https://fakestoreapi.com/users"
 
@@ -11,7 +12,7 @@ console.log(dados)
 console.log('--------')
 let trs = document.querySelectorAll('tr')
 
-for (let i = 1; i < trs.length; i++) {
+for (let i = 1; i < trs.length - 1; i++) {
    let linha = trs[i].children
    let index = i - 1
    linha[0].textContent = dados[index].id
@@ -21,8 +22,17 @@ for (let i = 1; i < trs.length; i++) {
 }
 
 
-// // segunda versão
-// let dados2 = await buscarDados('https://fakestoreapi.com/carts')
+// segunda versão
+let dados2 = await buscarDados('https://fakestoreapi.com/carts')
+
+let table2 = document.querySelector('#table2')
+for (let i = 0; i < dados2.length; i++) {
+    let l = gerarLinha(dados2[i])
+    table2.append(l)
+    console.log(dados2[i])
+}
+
+
 // console.log(dados2)
 
 
